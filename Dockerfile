@@ -8,5 +8,6 @@ RUN wget https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SP
  && rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
  && ln -s /spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} /spark
 
+RUN apk add bash coreutils procps python py-pip
+
 WORKDIR /spark
-COPY start-master.sh start-worker.sh ./
