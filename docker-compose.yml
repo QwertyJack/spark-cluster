@@ -3,7 +3,7 @@ networks:
   spark-network:
 services:
   spark-master:
-    image: qwertyjack/spark
+    image: mienkofax/spark-cluster:version-0.2
     container_name: spark-master
     hostname: spark-master
     command: >
@@ -16,7 +16,7 @@ services:
     networks:
       - spark-network
   spark-worker:
-    image: qwertyjack/spark
+    image: mienkofax/spark-cluster:version-0.2
     depends_on:
       - spark-master
     command: >
