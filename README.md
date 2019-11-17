@@ -1,6 +1,6 @@
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/qwertyjack/spark)
-![Docker Pulls](https://img.shields.io/docker/pulls/qwertyjack/spark)
-![Image Size](https://img.shields.io/microbadger/image-size/qwertyjack/spark/latest)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/mienkofax/spark-cluster)
+![Docker Pulls](https://img.shields.io/docker/pulls/mienkofax/spark-cluster)
+![Image Size](https://img.shields.io/microbadger/image-size/mienkofax/spark-cluster/latest)
 
 # Spark Cluster
 
