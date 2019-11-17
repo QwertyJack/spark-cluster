@@ -1,6 +1,4 @@
 version: "3.6"
-networks:
-  spark-network:
 services:
   spark-master:
     image: mienkofax/spark-cluster:version-0.2
@@ -14,7 +12,7 @@ services:
       - 8080:8080
       - 7077:7077
     networks:
-      - spark-network
+      - spark-cluster
   spark-worker:
     image: mienkofax/spark-cluster:version-0.2
     depends_on:
@@ -33,5 +31,10 @@ services:
     ports:
       - 8080
     networks:
-      - spark-network
+      - spark-cluster
 
+networks:
+  spark-cluster:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
