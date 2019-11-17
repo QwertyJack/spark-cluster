@@ -1,0 +1,28 @@
+version: '3.6'
+
+networks:
+  spark-network:
+    ipam:
+      config:
+        - subnet: 172.0.0.0/24
+
+services:
+    nodemaster:
+        build:
+            context: .
+            dockerfile: Dockerfile
+
+    node2:
+        build:
+            context: .
+            dockerfile: Dockerfile
+
+    node3:
+        build:
+            context: .
+            dockerfile: Dockerfile
+
+    task:
+        build:
+            context: .
+            dockerfile: Dockerfile
