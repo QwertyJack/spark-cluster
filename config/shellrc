@@ -1,0 +1,13 @@
+export PATH=/root/hadoop/bin:/root/hadoop/sbin:/root/spark/bin:$PATH
+export HADOOP_HOME=/root/hadoop
+export LD_LIBRARY_PATH=/root/hadoop/lib/native:$LD_LIBRARY_PATH
+export HADOOP_CONF_DIR=/root/hadoop/etc/hadoop
+export SPARK_DIST_CLASSPATH=$(hadoop classpath)
+export SPARK_HOME=/root/spark
+
+
+
+export JAVA_HOME=/usr/local/openjdk-8
+export HDFS_NAMENODE_USER=root
+export HDFS_DATANODE_USER=root
+export HDFS_SECONDARYNAMENODE_USER=root

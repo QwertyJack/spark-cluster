@@ -1,0 +1,20 @@
+version: '3.6'
+
+networks:
+  spark-network:
+    ipam:
+      config:
+        - subnet: 172.0.0.0/24
+
+services:
+    nodemaster:
+        image: mienkofax/spark-cluster
+
+    node2:
+        image: mienkofax/spark-cluster
+
+    node3:
+        image: mienkofax/spark-cluster
+
+    task:
+        image: mienkofax/spark-cluster
