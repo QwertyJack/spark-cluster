@@ -11,6 +11,8 @@ RUN wget -q https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-$
 RUN apk add bash coreutils procps python py-pip \
     && pip install ipython
 
+ENV PATH "${PATH}:/spark/bin"
+
 ENV PYSPARK_DRIVER_PYTHON ipython
 
 WORKDIR /spark
