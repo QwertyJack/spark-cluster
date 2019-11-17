@@ -12,7 +12,9 @@ Inspired by [2].
 
 ## Cluster Operation
 
-- Start the cluster: `docker-compose up -d`
+- Start the cluster with pi example: `docker-compose up -d`
+- Start the cluster without example: `docker-compose up -d spark-master spark-worker`
+- *(Optional)* start only pi example `docker-compose up tasks`
 - *(Optional)* Visit `http://localhost:8080` in the browser to see the WebUI
 - *(Optional)* Watch cluster logs: `docker-compose logs -f`
 - *(Optional)* Add more workers (e.g. up to 3): `docker-compose up -d --scale spark-worker=3`

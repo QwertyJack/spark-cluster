@@ -1,7 +1,7 @@
 version: "3.6"
 services:
   spark-master:
-    image: mienkofax/spark-cluster:version-0.2
+    image: mienkofax/spark-cluster:v-0.3
     container_name: spark-master
     hostname: spark-master
     command: >
@@ -13,8 +13,9 @@ services:
       - 7077:7077
     networks:
       - spark-cluster
+
   spark-worker:
-    image: mienkofax/spark-cluster:version-0.2
+    image: mienkofax/spark-cluster:v-0.3
     depends_on:
       - spark-master
     command: >
@@ -25,11 +26,20 @@ services:
       - SPARK_MASTER=spark://spark-master:7077
       - SPARK_WORKER_WEBUI_PORT=8080
       - SPARK_WORKER_CORES=1
-      - SPARK_WORKER_MEMORY=512m
+      - SPARK_WORKER_MEMORY=1024m
       - SPARK_DRIVER_MEMORY=128m
       - SPARK_EXECUTOR_MEMORY=256m
     ports:
       - 8080
+    networks:
+      - spark-cluster
+
+  tasks:
+    build:
+      dockerfile: Dockerfile
+      context: tasks
+    depends_on:
+      - spark-worker
     networks:
       - spark-cluster
 
