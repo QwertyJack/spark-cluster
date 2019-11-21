@@ -38,8 +38,12 @@ if __name__ == "__main__":
 
     # Train a DecisionTree model.
     #  Empty categoricalFeaturesInfo indicates all features are continuous.
-    model = DecisionTree.trainClassifier(trainingData, numClasses=2, categoricalFeaturesInfo={},
-                                         impurity='gini', maxDepth=5, maxBins=32)
+    model = DecisionTree.trainClassifier(trainingData,
+                                         numClasses=2,
+                                         categoricalFeaturesInfo={},
+                                         impurity='gini',
+                                         maxDepth=5,
+                                         maxBins=32)
 
     # Evaluate model on test instances and compute test error
     predictions = model.predict(testData.map(lambda x: x.features))
@@ -51,6 +55,6 @@ if __name__ == "__main__":
     print(model.toDebugString())
 
     # Save and load model
-    model.save(sc, "hdfs://nodemaster:9000/tmp/myDecisionTreeClassificationModel")
-    sameModel = DecisionTreeModel.load(sc, "hdfs://nodemaster:9000/tmp/myDecisionTreeClassificationModel")
+    model.save(sc, "hdfs://nodemaster:9000/tree/tree_model")
+    sameModel = DecisionTreeModel.load(sc, "hdfs://nodemaster:9000/tree/tree_model")
     # $example off$
