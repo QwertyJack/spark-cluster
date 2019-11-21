@@ -9,20 +9,20 @@ networks:
 services:
     nodemaster:
         build:
-            context: new-infra
+            context: .
             dockerfile: Dockerfile
 
     node2:
         build:
-            context: new-infra
+            context: .
             dockerfile: Dockerfile
 
     node3:
         build:
-            context: new-infra
+            context: .
             dockerfile: Dockerfile
 
     task:
         build:
-            context: new-infra
+            context: .
             dockerfile: Dockerfile
