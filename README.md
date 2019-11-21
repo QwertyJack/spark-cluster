@@ -5,19 +5,26 @@
 # Spark Cluster
 
 Deploy a local spark cluster using standalone mode[1].
-Inspired by [2].
+Inspired by [2] and [3]
 
 [1]: https://spark.apache.org/docs/latest/spark-standalone.html
 [2]: https://towardsdatascience.com/a-journey-into-big-data-with-apache-spark-part-1-5dfcc2bccdd2
+[3]: https://github.com/QwertyJack/spark-cluster
 
 ## Cluster Operation
 
-- Start the cluster with pi example: `docker-compose up -d`
-- Start the cluster without example: `docker-compose up -d spark-master spark-worker`
-- *(Optional)* start only pi example `docker-compose up tasks`
-- *(Optional)* Visit `http://localhost:8080` in the browser to see the WebUI
+- Using Docker hub:
+    - Start the cluster with pi example: `docker-compose up -f docker-compose.yml -f docker-compose.pull.yml -d`
+    - Start the cluster without example: `docker-compose -f docker-compose.yml -f docker-compose.pull.yml up -d nodemaster node2 node3`
+    - *(Optional)* start task with pi example: `docker-compose -f docker-compose.yml -f docker-compose.pull.yml up tasks`
+- Using local Dockerfile:
+    - Start the cluster with pi example: `docker-compose -f docker-compose.yml -f docker-compose.build.yml up -d`
+    - Start the cluster without example: `docker-compose -f docker-compose.yml -f docker-compose.build.yml up -d nodemaster node2 node3`
+    - *(Optional)* start task with pi example `docker-compose -f docker-compose.yml -f docker-compose.build.yml up tasks`
+- *(Optional)* Visit `http://172.0.0.10:8080` in the browser to see the master WebUI
+- *(Optional)* Visit `http://172.0.0.10:9870` in the browser to see the Hadoop UI
+- *(Optional)* Visit `http://172.0.0.10:18080` in the browser to see the Spark history
 - *(Optional)* Watch cluster logs: `docker-compose logs -f`
-- *(Optional)* Add more workers (e.g. up to 3): `docker-compose up -d --scale spark-worker=3`
 - *(Optional)* Watch cluster resource usage in real time: `docker stats`
 - Shutdown the cluster and clean up: `docker-compose down`
 

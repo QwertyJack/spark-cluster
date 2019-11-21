@@ -1,50 +1,56 @@
-version: "3.6"
-services:
-  spark-master:
-    image: mienkofax/spark-cluster:v-0.3
-    container_name: spark-master
-    hostname: spark-master
-    command: >
-      /bin/sh -c '
-      /spark/sbin/start-master.sh
-      && tail -f /spark/logs/*'
-    ports:
-      - 8080:8080
-      - 7077:7077
-    networks:
-      - spark-cluster
-
-  spark-worker:
-    image: mienkofax/spark-cluster:v-0.3
-    depends_on:
-      - spark-master
-    command: >
-      /bin/sh -c '
-      /spark/sbin/start-slave.sh $$SPARK_MASTER
-      && tail -f /spark/logs/*'
-    environment:
-      - SPARK_MASTER=spark://spark-master:7077
-      - SPARK_WORKER_WEBUI_PORT=8080
-      - SPARK_WORKER_CORES=1
-      - SPARK_WORKER_MEMORY=1024m
-      - SPARK_DRIVER_MEMORY=128m
-      - SPARK_EXECUTOR_MEMORY=256m
-    ports:
-      - 8080
-    networks:
-      - spark-cluster
-
-  tasks:
-    build:
-      dockerfile: Dockerfile
-      context: tasks
-    depends_on:
-      - spark-worker
-    networks:
-      - spark-cluster
+version: '3.6'
 
 networks:
-  spark-cluster:
+  spark-network:
     ipam:
       config:
-        - subnet: 172.20.0.0/24
+        - subnet: 172.0.0.0/24
+
+services:
+    nodemaster:
+        container_name: nodemaster
+        hostname: nodemaster
+        command: master
+        environment:
+            - CLUSTER_NAME=test
+        networks:
+            spark-network:
+                ipv4_address: 172.0.0.10
+
+    node2:
+        container_name: node2
+        hostname: node2
+        command: node
+        environment:
+            - SPARK_MASTER=nodemaster:7077
+            - SPARK_WORKER_CORES=1
+            - SPARK_WORKER_MEMORY=2G
+            - SPARK_DRIVER_MEMORY=512m
+        networks:
+            spark-network:
+                ipv4_address: 172.0.0.2
+
+    node3:
+        container_name: node3
+        hostname: node3
+        command: node
+        environment:
+            - SPARK_MASTER=nodemaster:7077
+            - SPARK_WORKER_CORES=1
+            - SPARK_WORKER_MEMORY=2G
+            - SPARK_DRIVER_MEMORY=512m
+        networks:
+            spark-network:
+                ipv4_address: 172.0.0.3
+
+    task:
+        container_name: task
+        hostname: task
+        command: task
+        environment:
+            - SPARK_MASTER=nodemaster:7077
+            - SPARK_EXECUTOR_MEMORY=2G
+            - SPARK_EXECUTOR_CORES=1
+        networks:
+            - spark-network
+
