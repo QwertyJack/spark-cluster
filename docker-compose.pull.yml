@@ -2,13 +2,13 @@ version: '3.6'
 
 services:
     nodemaster:
-        image: mienkofax/spark-cluster
+        image: mienkofax/spark-cluster:latest
 
     node2:
-        image: mienkofax/spark-cluster
+        image: mienkofax/spark-cluster:latest
 
     node3:
-        image: mienkofax/spark-cluster
+        image: mienkofax/spark-cluster:latest
 
     task:
-        image: mienkofax/spark-cluster
+        image: mienkofax/spark-cluster:latest
