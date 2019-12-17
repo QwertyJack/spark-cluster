@@ -23,7 +23,7 @@ USER root
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-    apt-get install openssh-server python-numpy python3 rsync -y --no-install-recommends&& \
+    apt-get install openssh-server python-numpy python3 python3-pip rsync -y --no-install-recommends&& \
     apt-get clean
 
 

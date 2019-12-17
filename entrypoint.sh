@@ -32,6 +32,7 @@ function init_directory() {
     fi
 }
 
+pip3 --no-cache-dir install -r /root/tasks/requirements.txt
 
 for arg in "$@"
 do
