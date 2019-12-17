@@ -53,4 +53,6 @@ services:
             - SPARK_EXECUTOR_CORES=1
         networks:
             - spark-network
+        volumes:
+        - ./tasks:/root/tasks
 
