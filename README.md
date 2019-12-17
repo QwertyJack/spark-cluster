@@ -14,16 +14,16 @@ Inspired by [2] and [3]
 ## Cluster Operation
 
 - Using Docker hub:
-    - Start the cluster with pi example: `docker-compose up -f docker-compose.yml -f docker-compose.pull.yml -d`
+    - Start the cluster with pi example: `docker-compose -f docker-compose.yml -f docker-compose.pull.yml up -d`
     - Start the cluster without example: `docker-compose -f docker-compose.yml -f docker-compose.pull.yml up -d nodemaster node2 node3`
-    - *(Optional)* start task with pi example: `docker-compose -f docker-compose.yml -f docker-compose.pull.yml up tasks`
+    - *(Optional)* start task with pi example: `docker-compose -f docker-compose.yml -f docker-compose.pull.yml up task`
 - Using local Dockerfile:
     - Start the cluster with pi example: `docker-compose -f docker-compose.yml -f docker-compose.build.yml up -d`
     - Start the cluster without example: `docker-compose -f docker-compose.yml -f docker-compose.build.yml up -d nodemaster node2 node3`
-    - *(Optional)* start task with pi example `docker-compose -f docker-compose.yml -f docker-compose.build.yml up tasks`
+    - *(Optional)* start task with pi example `docker-compose -f docker-compose.yml -f docker-compose.build.yml up task`
 - *(Optional)* Visit `http://172.0.0.10:8080` in the browser to see the master WebUI
 - *(Optional)* Visit `http://172.0.0.10:9870` in the browser to see the Hadoop UI
-- *(Optional)* Visit `http://172.0.0.10:18080` in the browser to see the Spark history
+- *(Optional)* Visit `http://172.0.0.10:18080` in the browser to see the Spark History Server
 - *(Optional)* Watch cluster logs: `docker-compose logs -f`
 - *(Optional)* Watch cluster resource usage in real time: `docker stats`
 - Shutdown the cluster and clean up: `docker-compose down`

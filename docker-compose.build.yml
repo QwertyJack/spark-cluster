@@ -1,11 +1,5 @@
 version: '3.6'
 
-networks:
-  spark-network:
-    ipam:
-      config:
-        - subnet: 172.0.0.0/24
-
 services:
     nodemaster:
         build:

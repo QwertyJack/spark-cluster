@@ -16,6 +16,8 @@ services:
         networks:
             spark-network:
                 ipv4_address: 172.0.0.10
+        volumes:
+            - ./tasks/requirements.txt:/root/tasks/requirements.txt
 
     node2:
         container_name: node2
@@ -29,6 +31,8 @@ services:
         networks:
             spark-network:
                 ipv4_address: 172.0.0.2
+        volumes:
+            - ./tasks/requirements.txt:/root/tasks/requirements.txt
 
     node3:
         container_name: node3
@@ -42,6 +46,8 @@ services:
         networks:
             spark-network:
                 ipv4_address: 172.0.0.3
+        volumes:
+            - ./tasks/requirements.txt:/root/tasks/requirements.txt
 
     task:
         container_name: task
@@ -53,4 +59,6 @@ services:
             - SPARK_EXECUTOR_CORES=1
         networks:
             - spark-network
+        volumes:
+        - ./tasks:/root/tasks
 
