@@ -56,5 +56,5 @@ if __name__ == "__main__":
 
     # Save and load model
     model.save(sc, "hdfs://nodemaster:9000/tree/tree_model")
-    sameModel = DecisionTreeModel.load(sc, "hdfs://nodemaster:9000/tree/tree_model")
+    m = DecisionTreeModel.load(sc, "hdfs://nodemaster:9000/tree/tree_model")
     # $example off$
