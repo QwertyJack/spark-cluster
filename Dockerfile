@@ -74,5 +74,7 @@ COPY config/core-site.xml config/hdfs-site.xml config/mapred-site.xml \
 RUN echo $JAVA_HOME_DOCKER >> /root/hadoop/etc/hadoop/hadoop-env.sh
 RUN mkdir /loggs
 
+RUN pip3 install requests pytest setuptools
+
 WORKDIR /root/
 ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]
