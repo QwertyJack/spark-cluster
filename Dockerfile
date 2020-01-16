@@ -23,7 +23,7 @@ USER root
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-    apt-get install openssh-server python-numpy python3 python3-pip rsync -y --no-install-recommends&& \
+    apt-get install openssh-server python-numpy python3 python3-pip rsync postgresql-server-dev-all python3-dev gcc -y --no-install-recommends && \
     apt-get clean
 
 
@@ -39,12 +39,12 @@ RUN wget https://downloads.lightbend.com/scala/2.12.10/scala-2.12.10.tgz && \
 # Spark setup
 WORKDIR /root
 RUN wget https://archive.apache.org/dist/hadoop/core/hadoop-3.2.1/hadoop-3.2.1.tar.gz
-RUN wget https://archive.apache.org/dist/spark/spark-3.0.0-preview/spark-3.0.0-preview-bin-without-hadoop.tgz
+RUN wget https://archive.apache.org/dist/spark/spark-3.0.0-preview2/spark-3.0.0-preview2-bin-without-hadoop.tgz
 
 RUN tar -zxf hadoop-3.2.1.tar.gz && \
     mv hadoop-3.2.1 hadoop && \
-    tar -zxf spark-3.0.0-preview-bin-without-hadoop.tgz && \
-    mv spark-3.0.0-preview-bin-without-hadoop spark && \
+    tar -zxf spark-3.0.0-preview2-bin-without-hadoop.tgz && \
+    mv spark-3.0.0-preview2-bin-without-hadoop spark && \
     rm *gz
 RUN mkdir -p /root/.ssh /root/hadoop/logs \
     /root/data/nameNode /root/data/dataNode \
@@ -73,6 +73,8 @@ COPY config/core-site.xml config/hdfs-site.xml config/mapred-site.xml \
 
 RUN echo $JAVA_HOME_DOCKER >> /root/hadoop/etc/hadoop/hadoop-env.sh
 RUN mkdir /loggs
+
+RUN pip3 install requests pytest setuptools
 
 WORKDIR /root/
 ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]

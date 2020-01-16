@@ -2,6 +2,7 @@ version: '3.6'
 
 networks:
   spark-network:
+    name: spark-network
     ipam:
       config:
         - subnet: 172.0.0.0/24
