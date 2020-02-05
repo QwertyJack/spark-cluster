@@ -33,6 +33,7 @@ function init_directory() {
 }
 
 pip3 --no-cache-dir install -r /root/tasks/requirements.txt
+pip3 --no-cache-dir install /root/package/dga.tar.gz
 
 for arg in "$@"
 do
