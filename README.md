@@ -12,6 +12,7 @@ Inspired by [2].
 
 ## Cluster Operation
 
+- *(Optional)* Config shared storage to simulate HDFS: change `volumes` section in docker compose file (default: `/home`, `/data`)
 - Start the cluster: `docker-compose up -d`
 - *(Optional)* Visit `http://localhost:8080` in the browser to see the WebUI
 - *(Optional)* Watch cluster logs: `docker-compose logs -f`

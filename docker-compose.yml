@@ -15,6 +15,9 @@ services:
       - 7077:7077
     networks:
       - spark-network
+    volumes:
+      - /home:/home
+      - /data:/data
   spark-worker:
     image: qwertyjack/spark
     depends_on:
@@ -30,4 +33,7 @@ services:
       - 8080
     networks:
       - spark-network
+    volumes:
+      - /home:/home
+      - /data:/data
 
