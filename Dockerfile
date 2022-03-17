@@ -12,6 +12,8 @@ RUN wget -q https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-$
  && rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
  && ln -s /spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} /spark
 
-ENV PYSPARK_DRIVER_PYTHON=ipython3 PYSPARK_PYTHON=python3
+RUN ln -s python3 /usr/bin/python
+
+ENV PYSPARK_DRIVER_PYTHON=ipython3 PYSPARK_PYTHON=python3 PYTHONIOENCODING=utf8
 
 WORKDIR /spark
