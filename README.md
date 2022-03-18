@@ -46,3 +46,12 @@ docker exec spark-master bin/spark-submit --master spark://spark-master:7077 --c
 # run python app
 docker exec spark-master bin/spark-submit --master spark://spark-master:7077 examples/src/main/python/pi.py 1000
 ```
+
+### Submit Your Own App
+
+```sh
+docker exec -w $PWD \
+    -e PYSPARK_DRIVER_PYTHON=$(which python) \
+    -e PYSPARK_PYTHON=$(which python) \
+    spark-master spark-submit --conf spark.executorEnv.PYTHONPATH=$PWD my_app.py
+```
