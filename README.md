@@ -47,11 +47,27 @@ docker exec spark-master bin/spark-submit --master spark://spark-master:7077 --c
 docker exec spark-master bin/spark-submit --master spark://spark-master:7077 examples/src/main/python/pi.py 1000
 ```
 
-### Submit Your Own App
+## Customize Python Environment
+
+Thanks to shared folders, it is very easy to use your own Python environment in Spark.
+Make sure your env is shared among the containers, i.e. `/home` or `/data` by default.
+
+**Notes**: For compatibility issue py38 is not supported by Spark 2.4; **Python3.6 (pre-installed)** and Python3.7 are recommended.
+
+To get an interactive shell:
+
+```sh
+docker exec -ti -w $PWD \
+	-e PYSPARK_DRIVER_PYTHON=$(which ipython) \
+	-e PYSPARK_PYTHON=$(which python) \
+	spark-master pyspark --conf spark.executorEnv.PYTHONPATH=$PWD
+```
+
+Or to submit an app:
 
 ```sh
 docker exec -w $PWD \
-    -e PYSPARK_DRIVER_PYTHON=$(which python) \
-    -e PYSPARK_PYTHON=$(which python) \
-    spark-master spark-submit --conf spark.executorEnv.PYTHONPATH=$PWD my_app.py
+	-e PYSPARK_DRIVER_PYTHON=$(which python) \
+	-e PYSPARK_PYTHON=$(which python) \
+	spark-master spark-submit --conf spark.executorEnv.PYTHONPATH=$PWD my_app.py
 ```
